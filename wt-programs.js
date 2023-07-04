@@ -16,7 +16,7 @@ function isEmptyObject(obj) {
 memberstack.getCurrentMember().then(({ data: member }) => {
     if (member) {
         checkIsJSONExist(member.id);
-				checkOnBoardingForm(member);
+	    checkOnBoardingForm(member);
     } 
 })
 
@@ -35,12 +35,12 @@ async function checkIsJSONExist(memberID) {
 
 async function checkOnBoardingForm(member) {
 	if(!member.customFields['other-diagnosis']) {
-		if(isEmptyObject(member.customFields)) { 
-            var getRecommendOnBoarding = document.getElementById('recommend-onboarding');
-			getRecommendOnBoarding.style.display = 'block'
-		} else {
-            var getRecommendBlogs = document.getElementById('recommend-blogs');
-			getRecommendBlogs.style.display = 'block'
+	    if(!member.customFields['diagnosis'] || !member.customFields['symptoms']) { 
+            	var getRecommendOnBoarding = document.getElementById('recommend-onboarding');
+		getRecommendOnBoarding.style.display = 'block'
+	    } else {
+            	var getRecommendBlogs = document.getElementById('recommend-blogs');
+		getRecommendBlogs.style.display = 'block'
             
             if (member.customFields['diagnosis']) {
                 var getConditionSection = document.getElementById('conditions-section');
